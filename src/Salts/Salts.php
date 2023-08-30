@@ -55,7 +55,7 @@ class Salts
      */
     protected function fetch()
     {
-        return Collection::make(file($this->source, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES))
+        return Collection::make(file($this->source, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES) ?: [])
             ->map(function ($line) {
                 // capture everything between single quotes
                 preg_match_all(self::PATTERN_CAPTURE, $line, $matches);
